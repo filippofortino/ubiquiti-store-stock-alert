@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Actions\GetProductAvailabilityAction;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Support\Facades\Log;
 
 class CheckProductsAvailability implements ShouldQueue
 {
@@ -35,6 +36,9 @@ class CheckProductsAvailability implements ShouldQueue
                 Mail::to('filippofortino+ubalert@gmail.com')->send(new ProductIsAvailable($product));
                 $product->available = true;
                 $product->save();
+                Log::info("Product: '{$product->name}' is now available");
+            } else {
+                Log::info("Product: '{$product->name}' is still not available");
             }
         }
     }
