@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Jobs\CheckProductsAvailability;
+use App\Mail\ProductIsAvailable;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
